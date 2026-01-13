@@ -1,12 +1,13 @@
 {
   "name": "gigflow",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "cd backend && npm install",
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev"
   },
   "keywords": [],
   "author": "Arjun",
   "license": "ISC",
-  "description": ""
+  "description": "A freelance marketplace platform"
 }
