@@ -17,17 +17,20 @@ dotenv.config();
 const app = express();
 const httpServer = createServer(app);
 
+// Normalize FRONTEND_URL by removing trailing slash
+const FRONTEND_URL = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
+
 // Socket.io setup for real-time notifications (Bonus Feature)
 const io = new Server(httpServer, {
     cors: {
-        origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+        origin: FRONTEND_URL,
         credentials: true
     }
 });
 
 // Middleware
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: FRONTEND_URL,
     credentials: true
 }));
 app.use(express.json());
@@ -51,6 +54,22 @@ io.on('connection', (socket) => {
 
 // Make io accessible to routes
 app.set('io', io);
+
+// Root route - Welcome message
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'Welcome to GigFlow API',
+        version: '1.0.0',
+        endpoints: {
+            health: '/api/health',
+            auth: '/api/auth',
+            gigs: '/api/gigs',
+            bids: '/api/bids'
+        },
+        documentation: 'Visit the frontend application for full functionality'
+    });
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
