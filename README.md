@@ -4,7 +4,7 @@ A freelance marketplace where clients post gigs and freelancers bid on them.
 
 ## Live Demo
 
-**Frontend:** https://storied-souffle-1d3a92.netlify.app  
+**Frontend:** https://gig-flow-lemon-three.vercel.app  
 **Backend API:** https://gigflow-production.up.railway.app
 
 ## Features
